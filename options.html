@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LeetCode Sync Settings</title>
+    <style>
+      :root {
+        --fg: #1f2328;
+        --muted: #656d76;
+        --border: #d0d7de;
+        --bg: #fff;
+        --ok: #1a7f37;
+        --err: #cf222e;
+        --brand: #ffa116;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --fg: #e6edf3;
+          --muted: #8d96a0;
+          --border: #30363d;
+          --bg: #0d1117;
+          --ok: #3fb950;
+          --err: #f85149;
+        }
+      }
+      body {
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+        max-width: 560px;
+        margin: 32px auto;
+        padding: 0 16px;
+        color: var(--fg);
+        background: var(--bg);
+      }
+      h1 {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      h1 img {
+        width: 28px;
+        height: 28px;
+      }
+      label {
+        display: block;
+        margin-top: 18px;
+        font-weight: 600;
+      }
+      small {
+        display: block;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        margin-top: 6px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font: inherit;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 20px;
+      }
+      button {
+        padding: 8px 14px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--fg);
+        cursor: pointer;
+        font: inherit;
+      }
+      button.primary {
+        background: #2da44e;
+        border-color: #2da44e;
+        color: #fff;
+      }
+      #status {
+        margin-top: 14px;
+        min-height: 1.5em;
+      }
+      .ok {
+        color: var(--ok);
+      }
+      .err {
+        color: var(--err);
+      }
+      details {
+        margin-top: 24px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 10px 14px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      ol {
+        padding-left: 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      a {
+        color: #0969da;
+      }
+      #last {
+        margin-top: 20px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <h1><img src="icons/icon128.png" alt="" /> LeetCode Sync</h1>
+    <p>
+      Accepted submissions on leetcode.com get pushed to your GitHub repo
+      automatically.
+    </p>
+
+    <details id="help">
+      <summary>How to create a token (2 minutes)</summary>
+      <ol>
+        <li>
+          Create a GitHub repo for your solutions, e.g.
+          <code>leetcode-solutions</code>. Tick "Add a README".
+        </li>
+        <li>
+          Open
+          <a
+            href="https://github.com/settings/personal-access-tokens/new"
+            target="_blank"
+            rel="noopener"
+            >GitHub → Fine-grained tokens → Generate new token</a
+          >.
+        </li>
+        <li>
+          <b>Repository access:</b> "Only select repositories" → pick your
+          solutions repo.
+        </li>
+        <li>
+          <b>Permissions → Repository permissions → Contents:</b> Read and
+          write.
+        </li>
+        <li>Set an expiration, generate, and paste the token below.</li>
+      </ol>
+    </details>
+
+    <label
+      >GitHub token
+      <small>Stored only in this browser. Sent only to api.github.com.</small>
+      <input
+        id="token"
+        type="password"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="github_pat_..."
+      />
+    </label>
+
+    <label
+      >Repository
+      <small>Format: your-username/repo-name</small>
+      <input
+        id="repo"
+        type="text"
+        spellcheck="false"
+        placeholder="your-username/leetcode-solutions"
+      />
+    </label>
+
+    <div class="row">
+      <button id="save" class="primary">Save</button>
+      <button id="test">Test connection</button>
+    </div>
+    <div id="status"></div>
+
+    <div id="last"></div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
